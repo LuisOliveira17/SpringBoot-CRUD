@@ -21,7 +21,7 @@ public class Comida {
 
     }
 
-    public Comida(int id, String nome, int quantidade, LocalDate dataValidade) {
+    public Comida(long id, String nome, int quantidade, LocalDate dataValidade) {
         this.id = id;
         this.nome = nome;
         this.quantidade = quantidade;
