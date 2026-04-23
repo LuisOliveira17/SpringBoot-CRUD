@@ -11,7 +11,7 @@ public class Comida {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String nome;
     private int quantidade;
@@ -21,7 +21,7 @@ public class Comida {
 
     }
 
-    public Comida(long id, String nome, int quantidade, LocalDate dataValidade) {
+    public Comida(Long id, String nome, int quantidade, LocalDate dataValidade) {
         this.id = id;
         this.nome = nome;
         this.quantidade = quantidade;
