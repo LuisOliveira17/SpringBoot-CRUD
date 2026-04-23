@@ -14,14 +14,14 @@ public class Comida {
     private Long id;
 
     private String nome;
-    private int quantidade;
+    private Integer quantidade;
     private LocalDate dataValidade;
 
     public Comida() {
 
     }
 
-    public Comida(Long id, String nome, int quantidade, LocalDate dataValidade) {
+    public Comida(Long id, String nome, Integer quantidade, LocalDate dataValidade) {
         this.id = id;
         this.nome = nome;
         this.quantidade = quantidade;
