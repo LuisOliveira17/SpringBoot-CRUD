@@ -17,6 +17,7 @@ public class ComidaRequestDto {
         this.dataValidade = dataValidade;
     }
 
+
     public void validar(String nome, Integer quantidade, LocalDate dataValidade) {
         if(nome == null || nome.isBlank()){
             throw new IllegalArgumentException("O campo nome deve ser preenchido");
