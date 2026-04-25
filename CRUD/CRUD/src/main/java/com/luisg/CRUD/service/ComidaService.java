@@ -17,6 +17,26 @@ public class ComidaService {
         this.comidaRepository = comidaRepository;
     }
 
+    //Conversões para os DTO's
+    private Comida toEntity(ComidaRequestDto dto) {
+        Comida comida = new Comida();
+        comida.setNome(dto.getNome());
+        comida.setQuantidade(dto.getQuantidade());
+        comida.setDataValidade(dto.getDataValidade());
+        return comida;
+    }
+
+    //Só gerará o DTO de Response se passar por todas as validações do Request
+    private ComidaResponseDto toResponseDto(Comida comida) {
+        return new ComidaResponseDto(
+                comida.getId(),
+                comida.getNome(),
+                comida.getQuantidade(),
+                comida.getDataValidade()
+
+        );
+    }
+
     //Listar
     public List<ComidaResponseDto> getAllComidas(){
         return comidaRepository.findAll()
@@ -35,24 +55,5 @@ public class ComidaService {
     //Deletar
     public void deleteComida(Long comidaId) {
         comidaRepository.deleteById(comidaId);
-    }
-
-    //Conversões para os DTO's
-    private Comida toEntity(ComidaRequestDto dto) {
-        Comida comida = new Comida();
-        comida.setNome(dto.getNome());
-        comida.setQuantidade(dto.getQuantidade());
-        comida.setDataValidade(dto.getDataValidade());
-        return comida;
-    }
-
-    private ComidaResponseDto toResponseDto(Comida comida) {
-        return new ComidaResponseDto(
-                comida.getId(),
-                comida.getNome(),
-                comida.getQuantidade(),
-                comida.getDataValidade()
-
-        );
     }
 }
