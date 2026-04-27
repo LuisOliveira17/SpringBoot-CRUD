@@ -1,5 +1,4 @@
 package com.luisg.CRUD.service;
-
 import com.luisg.CRUD.dto.ComidaRequestDto;
 import com.luisg.CRUD.dto.ComidaResponseDto;
 import com.luisg.CRUD.model.Comida;
@@ -55,5 +54,12 @@ public class ComidaService {
     //Deletar
     public void deleteComida(Long comidaId) {
         comidaRepository.deleteById(comidaId);
+    }
+
+    //Get Com Id
+    public ComidaResponseDto getComidaById(Long id){
+        return comidaRepository.findById(id)
+                .map(comida -> toResponseDto(comida))
+                .orElseThrow(()->new RuntimeException("Comida Não encontrada"));
     }
 }
