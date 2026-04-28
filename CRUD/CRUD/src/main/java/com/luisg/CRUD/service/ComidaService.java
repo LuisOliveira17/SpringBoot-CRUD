@@ -58,8 +58,30 @@ public class ComidaService {
 
     //Get Com Id
     public ComidaResponseDto getComidaById(Long id){
-        return comidaRepository.findById(id)
-                .map(comida -> toResponseDto(comida))
-                .orElseThrow(()->new RuntimeException("Comida Não encontrada"));
+       Comida comida = comidaRepository.findById(id)
+               .orElseThrow(()->new RuntimeException("Comida não encontrada"));
+       return toResponseDto(comida);
+    }
+
+    //Atualizar
+    public ComidaResponseDto atualizarComida(Long id,ComidaRequestDto dto){
+       Comida comidaAchada = comidaRepository.findById(id).orElseThrow(()-> new RuntimeException("Comida não encontrada"));
+
+       if(dto.getNome() != null && !dto.getNome().isBlank()){
+           comidaAchada.setNome(dto.getNome());
+       }
+
+       if(dto.getDataValidade() != null){
+
+           comidaAchada.setDataValidade(dto.getDataValidade());
+       }
+
+       if(dto.getQuantidade() != null){
+           comidaAchada.setQuantidade(dto.getQuantidade());
+       }
+
+       comidaRepository.save(comidaAchada);
+
+       return toResponseDto(comidaAchada);
     }
 }

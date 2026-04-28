@@ -11,19 +11,12 @@ public class ComidaRequestDto {
     private final Integer quantidade;
     private final LocalDate dataValidade;
 
-    public ComidaRequestDto(String nome, Integer quantidade, LocalDate dataValidade) {
-        this.nome = nome;
-        this.quantidade = quantidade;
-        this.dataValidade = dataValidade;
-    }
-
-
     public void validar(String nome, Integer quantidade, LocalDate dataValidade) {
         if(nome == null || nome.isBlank()){
             throw new IllegalArgumentException("O campo nome deve ser preenchido");
         }
 
-        else if(quantidade<0){
+        else if(quantidade<0 ||quantidade ==null){
             throw new IllegalArgumentException("A quantidade deve ser maior que zero");
         }
     }
@@ -39,4 +32,14 @@ public class ComidaRequestDto {
     public LocalDate getDataValidade() {
         return dataValidade;
     }
+
+    public ComidaRequestDto(String nome, Integer quantidade, LocalDate dataValidade) {
+        this.nome = nome;
+        this.quantidade = quantidade;
+        this.dataValidade = dataValidade;
+        validar(nome,quantidade,dataValidade);
+    }
+
+
+
 }

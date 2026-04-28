@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController //Defino que esta classe é um controller
-@RequestMapping("/Comida")//Gera os mapas para reconhecer as rotas ex: (localhost/Comida)
+@RequestMapping("/comida")//Gera os mapas para reconhecer as rotas ex: (localhost/Comida)
 
 public class ComidaController {
 
@@ -41,14 +41,21 @@ public class ComidaController {
 
     //Cria o DeleteMapping passando apenas o caminho do id
     @DeleteMapping("/{id}")
-    public void deleteComida(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteComida(@PathVariable Long id) {
         comidaService.deleteComida(id);
+        return ResponseEntity.noContent().build(); // Ele não deve retornar nada
     }
 
     //Get por ID
     @GetMapping("/{id}")
     public ResponseEntity<ComidaResponseDto> getComidaById(@PathVariable Long id) {
         ComidaResponseDto salva = comidaService.getComidaById(id);
-        return ResponseEntity.ok(salva);
+        return ResponseEntity.status(201).body(salva);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ComidaResponseDto> atulizarComida(@PathVariable Long id, @RequestBody ComidaRequestDto dto) {
+        ComidaResponseDto comidaAtualizada = comidaService.atualizarComida(id, dto);
+        return ResponseEntity.status(201).body(comidaAtualizada);
     }
 }

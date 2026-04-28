@@ -12,7 +12,7 @@ public class ComidaResponseDto {
         this.id = id;
         this.nome = nome;
         this.quantidade = quantidade;
-        this.dataValidade = LocalDate.now();
+        this.dataValidade = dataValidade;
     }
 
     public LocalDate getDataValidade() {
